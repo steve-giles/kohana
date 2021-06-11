@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "kohana"
+    }
+  },
+  "defaultProject": "kohana",
+  "cli": {
+    "analytics": false
+  }
 }
