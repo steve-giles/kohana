@@ -1,0 +1,9 @@
+<form [formGroup]="curriculumForm">
+  <div *ngIf="curriculums$ | async as curriculums; else loading">
+  </div>
+  <ng-template #loading>
+    <svg class="circular">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+    </svg>
+  </ng-template>
+</form>
