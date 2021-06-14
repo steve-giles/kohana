@@ -10,9 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AuthService {
 
-  //todo
-  //public authorized = false;
-  public authorized = true;
+  public authorized = false;
   accessToken = '';
 
   // public isAuthenticated = new BehaviorSubject<boolean>(false);
@@ -20,9 +18,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { }
 
   getAuthorizationToken(): string {
-    //todo
-    //return `Bearer ${this.accessToken}`;
-    return `Bearer ODJhNTI0MWIzOWY5MzUyYTgyNzRiNDA4NGM0ZDc0YmZkY2EwZmMwNmY5ZDQ3MzAzNGI3YjFhZjNlZWFjOTliMA`;
+    return `Bearer ${this.accessToken}`;
   }
 
   checkAuthenticated(): boolean {
@@ -32,11 +28,9 @@ export class AuthService {
   login(username: string, password: string): void  {
     this.authenticate(username, password).subscribe(
       result => {
-        debugger;
         console.log(result);
       },
       error => {
-        debugger;
         console.log(error);
       });
   }
@@ -78,7 +72,7 @@ export class AuthService {
     }
   }
 
-  validToken(token: string): Observable<boolean> {
+  validToken(): Observable<boolean> {
     const url = 'https://api.hceu-performance.com/api/v2/license-type';
     return this.http.get(url).pipe(
       map((result: any) => {

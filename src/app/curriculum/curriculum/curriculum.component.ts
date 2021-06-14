@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Course, CurriculumData} from '../../models/curriculum.types';
+import {CurriculumService} from '../curriculum.service';
 
 @Component({
   selector: 'app-curriculum',
@@ -9,15 +11,27 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class CurriculumComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(public curriculumService: CurriculumService, private formBuilder: FormBuilder) { }
 
-  curriculums$: Observable<any[]>;
+  curriculums$: Observable<CurriculumData[]>;
+
   curriculumForm: FormGroup;
+  curriculumDetails: CurriculumData;
+  selectedCourse: Course;
 
   ngOnInit(): void {
     this.curriculumForm = this.formBuilder.group({
       selectedCurriculum: '',
       selectedCourse: ''
+    });
+
+    this.curriculums$ = this.curriculumService.getCurriculumForCompany();
+
+    this.curriculumForm.get('selectedCurriculum').valueChanges.subscribe((data: string) => {
+      this.curriculumService.getCurriculum(data).subscribe(result => {
+        this.curriculumDetails = result;
+        console.log(result);
+      });
     });
   }
 
