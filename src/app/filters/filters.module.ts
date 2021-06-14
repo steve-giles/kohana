@@ -9,9 +9,12 @@ import {NgModule} from '@angular/core';
   declarations: [
     FiltersComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule
-    ]
+  exports: [
+    FiltersComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ]
 })
 export class FiltersModule { }

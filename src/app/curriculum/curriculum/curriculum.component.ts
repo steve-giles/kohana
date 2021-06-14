@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-curriculum',
@@ -9,12 +9,16 @@ import {FormGroup} from '@angular/forms';
 })
 export class CurriculumComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   curriculums$: Observable<any[]>;
   curriculumForm: FormGroup;
 
   ngOnInit(): void {
+    this.curriculumForm = this.formBuilder.group({
+      selectedCurriculum: '',
+      selectedCourse: ''
+    });
   }
 
 }

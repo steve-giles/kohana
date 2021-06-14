@@ -6,7 +6,12 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [CurriculumComponent],
+  declarations: [
+    CurriculumComponent
+  ],
+  exports: [
+    CurriculumComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule

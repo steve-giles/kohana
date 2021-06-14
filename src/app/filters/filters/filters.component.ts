@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-filters',
@@ -9,7 +9,7 @@ import {FormGroup} from '@angular/forms';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   filters$: Observable<any[]>;
   filterForm: FormGroup;
@@ -19,6 +19,9 @@ export class FiltersComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.filterForm = this.formBuilder.group({
+      selectedFilter: ''
+    });
   }
 
 }
