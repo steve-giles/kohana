@@ -7,6 +7,8 @@ import {LoginModule} from './login/login.module';
 import {FiltersModule} from './filters/filters.module';
 import {CurriculumModule} from './curriculum/curriculum.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AuthInterceptor} from './backend/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,12 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     LoginModule,
     FiltersModule,
     CurriculumModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
