@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {FiltersService} from '../filters.service';
+import {Observable} from 'rxjs';
 import {FilterData} from '../../models/filters.types';
+import {FiltersService} from './filters.service';
 
 @Component({
   selector: 'app-filters',

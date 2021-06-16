@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 import {Course, CurriculumData} from '../../models/curriculum.types';
-import {CurriculumService} from '../curriculum.service';
+import {CurriculumService} from './curriculum.service';
 
 @Component({
   selector: 'app-curriculum',

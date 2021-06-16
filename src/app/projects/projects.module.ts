@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CurriculumComponent } from './curriculum/curriculum.component';
+import { FiltersComponent } from './filters/filters.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
-    CurriculumComponent
+    CurriculumComponent,
+    FiltersComponent
   ],
   exports: [
+    FiltersComponent,
     CurriculumComponent
   ],
   imports: [
@@ -17,4 +20,4 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ]
 })
-export class CurriculumModule { }
+export class ProjectsModule { }

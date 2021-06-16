@@ -30,6 +30,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     const token = this.route.snapshot.queryParamMap.get('token');
+    const baseApiUrl = this.route.snapshot.queryParamMap.get('baseApiUrl');
+
+    if (baseApiUrl) {
+      this.authService.baseApiUrl = baseApiUrl;
+    }
 
     if (token) {
       this.authService.accessToken = token;

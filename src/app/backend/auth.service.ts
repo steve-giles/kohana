@@ -4,6 +4,7 @@ import {AuthenticatedResponse} from '../models/authenticate.types';
 import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ import {Router} from '@angular/router';
 export class AuthService {
 
   public authorized = false;
+  public baseApiUrl = environment.baseApiUrl;
+
   accessToken = '';
 
   // public isAuthenticated = new BehaviorSubject<boolean>(false);
@@ -45,7 +48,7 @@ export class AuthService {
       username: `${username}`
     };
 
-    const url = 'https://api.hceu-performance.com/api/v2/company/1/login';
+    const url = `${this.baseApiUrl}v2/company/1/login`;
 
     return this.http.post(url, request).pipe(
       map((result: any) => {
@@ -73,7 +76,7 @@ export class AuthService {
   }
 
   validToken(): Observable<boolean> {
-    const url = 'https://api.hceu-performance.com/api/v2/license-type';
+    const url = `${this.baseApiUrl}v2/license-type`;
     return this.http.get(url).pipe(
       map((result: any) => {
         return true;

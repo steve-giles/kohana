@@ -4,11 +4,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {LoginModule} from './login/login.module';
-import {FiltersModule} from './filters/filters.module';
-import {CurriculumModule} from './curriculum/curriculum.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './backend/auth-interceptor';
+import {ProjectsModule} from './projects/projects.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +18,7 @@ import {AuthInterceptor} from './backend/auth-interceptor';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    FiltersModule,
-    CurriculumModule,
+    ProjectsModule,
     NgbModule,
     HttpClientModule
   ],
