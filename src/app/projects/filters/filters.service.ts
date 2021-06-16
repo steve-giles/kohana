@@ -16,7 +16,7 @@ export class FiltersService {
     const url = `${this.authService.baseApiUrl}v2/filterset/${filterSetId}`;
     return this.http.get(url)
       .pipe(map((result: any) => {
-        return result.data;
+        return result.data ? result.data : result;
       }));
   }
 

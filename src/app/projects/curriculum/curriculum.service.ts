@@ -16,7 +16,7 @@ export class CurriculumService {
     const url = `${this.authService.baseApiUrl}v2/curriculum/${curriculumId}`;
     return this.http.get(url)
       .pipe(map((result: any) => {
-        return result.data;
+        return result.data ? result.data : result;
       }));
   }
 
@@ -24,7 +24,7 @@ export class CurriculumService {
     const url = `${this.authService.baseApiUrl}v2/company/51/curriculum`;
     return this.http.get(url)
       .pipe(map((result: any) => {
-        return result.data;
+        return result.data ? result.data : result;
       }));
   }
 }
