@@ -18,14 +18,13 @@ export class CurriculumComponent implements OnInit {
   curriculumForm: FormGroup;
   curriculumDetails: CurriculumData;
   selectedCourse: Course;
+  companyId: string;
 
   ngOnInit(): void {
     this.curriculumForm = this.formBuilder.group({
       selectedCurriculum: '',
       selectedCourse: ''
     });
-
-    this.curriculums$ = this.curriculumService.getCurriculumForCompany();
 
     this.curriculumForm.get('selectedCurriculum').valueChanges.subscribe((data: string) => {
       this.curriculumService.getCurriculum(data).subscribe(result => {
@@ -35,4 +34,8 @@ export class CurriculumComponent implements OnInit {
     });
   }
 
+  onCompany(companyId: string) {
+    this.companyId = companyId;
+    this.curriculums$ = this.curriculumService.getCurriculumForCompany(companyId);
+  }
 }

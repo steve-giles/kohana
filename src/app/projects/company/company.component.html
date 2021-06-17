@@ -1,0 +1,20 @@
+<form [formGroup]="companyForm">
+  <div *ngIf="companies$ | async as companies; else loading">
+    <h2>{{ companies.length }} Companies</h2>
+    <select formControlName="selectedCompany">
+      <option *ngFor="let company of companies" [value]="company.id">
+        {{ company.name }}
+      </option>
+    </select>
+    <ng-template #loading>
+      <svg class="circular">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+      </svg>
+    </ng-template>
+  </div>
+  <ng-template #loading>
+    <svg class="circular">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+    </svg>
+  </ng-template>
+</form>

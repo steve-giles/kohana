@@ -20,8 +20,8 @@ export class CurriculumService {
       }));
   }
 
-  public getCurriculumForCompany(): Observable<CurriculumData[]> {
-    const url = `${this.authService.baseApiUrl}v2/company/51/curriculum`;
+  public getCurriculumForCompany(companyId: string): Observable<CurriculumData[]> {
+    const url = `${this.authService.baseApiUrl}v2/company/${companyId}/curriculum`;
     return this.http.get(url)
       .pipe(map((result: any) => {
         return result.data ? result.data : result;

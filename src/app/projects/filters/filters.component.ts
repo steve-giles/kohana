@@ -14,16 +14,14 @@ export class FiltersComponent implements OnInit {
   constructor(public filtersService: FiltersService, private formBuilder: FormBuilder) { }
 
   filters$: Observable<FilterData[]>;
-
   filterForm: FormGroup;
   filterDetails: FilterData;
+  companyId: string;
 
   ngOnInit(): void {
     this.filterForm = this.formBuilder.group({
       selectedFilter: ''
     });
-
-    this.filters$ = this.filtersService.getFiltersForCompany();
 
     this.filterForm.get('selectedFilter').valueChanges.subscribe((data: string) => {
       this.filtersService.getFilterSet(data).subscribe(result => {
@@ -33,4 +31,8 @@ export class FiltersComponent implements OnInit {
     });
   }
 
+  onCompany(companyId: string) {
+    this.companyId = companyId;
+    this.filters$ = this.filtersService.getFiltersForCompany(companyId);
+  }
 }

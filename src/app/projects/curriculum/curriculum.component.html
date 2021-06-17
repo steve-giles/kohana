@@ -1,6 +1,8 @@
+<app-company (company)="onCompany($event)"></app-company>
+<br>
 <form [formGroup]="curriculumForm">
-  <div *ngIf="curriculums$ | async as curriculums; else loading">
-    <p>{{ curriculums.length }} Curriculums for company 51</p>
+  <div *ngIf="curriculums$ | async as curriculums">
+    <h2>{{ curriculums.length }} Curriculums for company {{companyId}}</h2>
     <select formControlName="selectedCurriculum">
       <option *ngFor="let curriculum of curriculums" [value]="curriculum.id">
         {{ curriculum.name }}

@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login/login.component';
 import {AuthGuardService} from './backend/auth-guard.service';
-import {FiltersComponent} from './projects/filters/filters.component';
 import {CurriculumComponent} from './projects/curriculum/curriculum.component';
+import {FiltersComponent} from './projects/filters/filters.component';
 
 const routes: Routes = [
   {

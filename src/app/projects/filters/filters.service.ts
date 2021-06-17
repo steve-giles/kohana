@@ -20,9 +20,8 @@ export class FiltersService {
       }));
   }
 
-  public getFiltersForCompany(): Observable<FilterData[]> {
-    // const url = 'https://api.hceu-performance.com/api/v2/company/51/filterset';
-    const url = `${this.authService.baseApiUrl}v2/company/3/filterset`;
+  public getFiltersForCompany(companyId: string): Observable<FilterData[]> {
+    const url = `${this.authService.baseApiUrl}v2/company/${companyId}/filterset`;
     return this.http.get(url)
       .pipe(map((result: any) => {
         return result.data ? result.data : result;

@@ -1,6 +1,8 @@
+<app-company (company)="onCompany($event)"></app-company>
+<br>
 <form [formGroup]="filterForm">
-  <div *ngIf="filters$ | async as filters; else loading">
-    <p>{{ filters.length }} Filter sets for company 51</p>
+  <div *ngIf="filters$ | async as filters">
+    <h2>{{ filters.length }} Filter sets for company {{companyId}}</h2>
     <select formControlName="selectedFilter">
       <option *ngFor="let filter of filters" [value]="filter.id">
         {{ filter.name }}
