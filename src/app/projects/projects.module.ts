@@ -4,6 +4,7 @@ import { CurriculumComponent } from './curriculum/curriculum.component';
 import { FiltersComponent } from './filters/filters.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CompanyComponent } from './company/company.component';
+import {MaterialModule} from '../shared/material.module';
 
 
 
@@ -19,7 +20,8 @@ import { CompanyComponent } from './company/company.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class ProjectsModule { }

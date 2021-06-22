@@ -3,11 +3,16 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse}
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AuthService} from './auth.service';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {Router} from '@angular/router';
+import {ErrorDialogComponent} from '../error-handler/error-dialog.component';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService) {}
+  constructor(public auth: AuthService,
+              private dialog: MatDialog,
+              private router: Router) {}
 
   /**
    * Intercepts the http request
@@ -21,28 +26,32 @@ export class AuthInterceptor implements HttpInterceptor {
     const modifiedReq = req.clone({
       headers: req.headers.set('Authorization', authToken),
     });
+
     return next.handle(modifiedReq).pipe(
-      catchError(this.handleError)
+      catchError(error => {
+        this.handleError(error, authToken);
+        return throwError(error);
+      })
     );
   }
-
 
   /**
    * HTTP custom error handler
    * @param error represents an error or failure
+   * @param authToken
    */
-  handleError(error: HttpErrorResponse): Observable<never> {
+  handleError(error: HttpErrorResponse, authToken: string) {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
+    } else if (error.status === 401 && authToken.length > 10) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = "Your session has expired. Please login or relaunch the application.";
+      this.dialog.open(ErrorDialogComponent, dialogConfig);
+      this.router.navigate(['login']);
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+      console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
     }
-
-    return throwError(error);
   }
 }
